@@ -79,9 +79,6 @@ while(True):
             #v_bird_lower = pt_l[1] - (height + needle_h*0.5)
             #w_bird_lower = (pt_l[0] + lower_w*0.5) - (max_loc[0] + needle_w*0.5)
         #print("postion of lower pipe:", pt_l) 
-        
-        cv.imshow('Result', screenshot)      
-
         #print("bird to upper:", w_bird_upper, ",", v_bird_upper)
         #print("bird to lower:", w_bird_lower, ",", v_bird_lower)
 
@@ -89,6 +86,18 @@ while(True):
         w_bird_mid = (pt_l[0] + lower_w*0.5) - (max_loc[0] + needle_w*0.5)
         print("vertical distance from middle point between pipes", v_bird_mid)
         print("horizontal distance from middle point between pipes", w_bird_mid)
+
+        birdx = int(max_loc[0]+needle_w*0.5)
+        birdy = int(max_loc[1]+needle_h*0.5)
+        birdpos = ((birdx), (birdy))
+        pipesx = int(pt_l[0] + lower_w*0.5)
+        pipesy = int(pt_u[1] + upper_h*0.5 + (pt_l[1] - pt_u[1])*0.5)
+        pipespos = (pipesx, pipesy)
+
+        cv.line(screenshot, birdpos, pipespos, color=(255, 0, 0), thickness=2, lineType=cv.LINE_4)
+
+        cv.imshow('Result', screenshot)      
+
     else:
         print('No needle found.')
 
